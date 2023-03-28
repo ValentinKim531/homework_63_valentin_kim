@@ -7,6 +7,14 @@ class Post(models.Model):
     image = models.ImageField(verbose_name='Фото', null=False, blank=True, upload_to='posts')
     author = models.ForeignKey(verbose_name='Автор', to=get_user_model(), related_name='posts', null=False, blank=False,
                                on_delete=models.CASCADE, default=get_user_model())
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Время создания"
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Дата и время обновления"
+    )
 
 
 class Comment(models.Model):
@@ -17,3 +25,11 @@ class Comment(models.Model):
                              blank=False,
                              on_delete=models.CASCADE)
     text = models.CharField(verbose_name='Комментарий', null=False, blank=False, max_length=200)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Время создания"
+    )
+    updated_at = models.DateTimeField(
+        auto_now_add = True,
+        verbose_name="Дата и время обновления"
+    )

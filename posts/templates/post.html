@@ -13,19 +13,27 @@
                 <div class="card-body">
                     <h1 class="card-title">Description: {{ post.description }}</h1>
                     <p>Author: {{ post.author }}</p>
-                    <h4>Comments:</h4>
+                    <br><br>
+                    <h2>Comments:</h2>
 
                     {% for comment in comments %}
                     <div>
-                        <p><b>Comment author: {{ comment.author }}</p>
+                        <p><b>Comment author: {{ comment.author }} :</p>
                         <div class="pre"><b>Review:</b> {{ comment.text }}</div>
                     </div>
                     <p>
                         <a href="{% url 'comment_detail' comment.pk %}">See more..</a>
                     </p>
+                    <br><br>
                     {% empty %}
                     <p>No reviews yet.</p>
                     {% endfor %}
+                    <br><br>
+                    <p>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'post_comment_add' post.pk %}">Добавить комментарий...</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
