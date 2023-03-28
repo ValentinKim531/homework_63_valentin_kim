@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -7,7 +8,7 @@ from posts.forms import PostForm
 from posts.models import Post
 
 
-class PostCreateView(SuccessMessageMixin, CreateView):
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = "post_create.html"
     model = Post
     form_class = PostForm

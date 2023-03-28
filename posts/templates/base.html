@@ -36,27 +36,30 @@
         </li>
         <li class="nav-item">
           <a class="nav-link active icons pic" aria-current="page" href="{% url 'profile' user.pk %}">Профиль
+              {% if user_obj.avatar %}
               <img src="{{ user.avatar.url }}" class="image-4-column" width="50" height="50" alt="profile button">
+                  {% endif %}
             </a>
         <l>{{ user.username }}</l>
+        <br>
         </li>
         <li class="nav-item">
-          <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="Выйти">
-        </form>
+        {% csrf_token %}
+        <a class="icons" href="{% url 'logout' %}">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
         </li>
         {% else %}
           <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="{% url 'login' %}?next={{ request.get_full_path }}">
-              <img src="../../static/img/add_post_image.png" width="50" height="50" alt="profile button">
+            <a class="icons" href="{% url 'login' %}?next={{ request.get_full_path }}">
+                            <i class="fa-solid fa-right-to-bracket"></i>
             </a>
             </li>
           <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="{% url 'register' %}">
-              <img src="../../static/img/add_post_image.png" width="50" height="50" alt="profile button">
+            <a class="icons" href="{% url 'register' %}">
+                <i class="fa-solid fa-user-plus"></i>
             </a>
-        </li>
+         </li>
           {% endif %}
       </ul>
       <form class="d-flex" role="search">
