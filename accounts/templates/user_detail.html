@@ -7,16 +7,84 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
-    {% if user_obj.avatar %}
-        <img class="avatar" src="{{ user_obj.avatar.url }}" width="250" height="250" alt="user picture">
-    {% endif %}
-    <p>Имя пользователя: {{ user_obj.username }}</p>
-    <p>Имя: {{ user_obj.first_name }}</p>
-    <p>Фамилия: {{ user_obj.last_name }}</p>
-    <p>Дата рождения: {{ user_obj.birth_date |date:'d.m.Y' }}</p>
-    <p>Почта: {{ user_obj.email }}</p>
 
-    <h2 class="text-center clear">Posts:</h2>
+<main class="bg-gray-100 bg-opacity-25">
+  <div class="lg:w-8/12 lg:mx-auto mb-8">
+    <header class="flex flex-wrap items-center p-4 md:py-8">
+        {% if user_obj.avatar %}
+        <div class="md:w-3/12 md:ml-16">
+        <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                     border-2 border-pink-600 p-1" src="{{ user_obj.avatar.url }}" alt="profile">
+      </div>
+        {% endif %}
+      <!-- profile meta -->
+      <div class="w-8/12 md:w-7/12 ml-4">
+        <div class="md:flex md:flex-wrap md:items-center mb-4">
+          <h2 class="text-3xl inline-block font-light md:mr-2 mb-2 sm:mb-0">
+            {{ user_obj.username }}
+          </h2>
+
+          <!-- badge -->
+          <span class="inline-block fas fa-certificate fa-lg text-blue-500
+                               relative mr-6  text-xl transform -translate-y-2" aria-hidden="true">
+            <i class="fas fa-check text-white text-xs absolute inset-x-0
+                               ml-1 mt-px"></i>
+          </span>
+
+          <!-- follow button -->
+          <a href="#" class="bg-blue-500 px-2 py-1
+                        text-white font-semibold text-sm rounded block text-center
+                        sm:inline-block block">Follow</a>
+        </div>
+
+        <!-- post, following, followers list for medium screens -->
+        <ul class="hidden md:flex space-x-8 mb-4">
+          <li>
+            <span class="font-semibold">6</span>
+            posts
+          </li>
+
+          <li>
+            <span class="font-semibold">50.5k</span>
+            followers
+          </li>
+          <li>
+            <span class="font-semibold">10</span>
+            following
+          </li>
+        </ul>
+
+        <!-- user meta form medium screens -->
+        <div class="hidden md:block">
+          <h1 class="font-semibold">{{ user_obj.get_full_name|default:user_obj.username }}</h1>
+          <span class="bioclass">Internet company</span>
+          <p>ByteWebster is a web development and coding blog website. Where we provide professional web projects🌍</p>
+          <span><strong>www.bytewebster.com</strong></span>
+        </div>
+      </div>
+    </header>
+
+
+    
+  </div>
+  <h2 class="text-center clear">Posts:</h2>
     {% include 'partial/post_list.html' %}
+</main>
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
