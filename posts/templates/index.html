@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+              <div class="tab-content">
+                <div id="home" class="container-fluid tab-pane active "><br>
+                    {% for post in posts %}
+                    <div class="row justify-content-center">
+                        <div class="">
+                            <div class="card mx-auto custom-card" id="prova">
+                                <div class="row post-header col-12 py-2 px-3">
+                                    <div class="col-6 float-left "><h4>{{ post.author }}</h4></div>
+                                    <div class="col-6 float-right text-right post-number"><h4>
+                                        <a href="{% url 'post_detail' post.pk %}">•••</a>
+                                    </h4></div>
+                                </div>
+                                <img class="card-img" src="{{ post.image.url }}" alt="post image">
+                                <div class="card-body px-3">
+                                    <h5 class="card-title">1000 Likes</h5>
+                                    <p class="card-text">{{ post.description }}</p>
+                                </div>
+                                 <div class="row post-header px-3 pb-3">
+                                    <div class="col-1 float-left text-left"><i class="far fa-heart"></i></i></div>
+                                    <div class="col-10 float-left text-left">Comment...</div>
+                                    <div class="col-1 float-right text-right"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        {% empty %}
+                        <h3>Records not found</h3>
+                </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
